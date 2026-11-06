@@ -6,24 +6,39 @@ import TeamsPage from './TeamsPage'
 
 type Tab = 'partido' | 'torneo' | 'equipos'
 
-function Logo() {
+function Logo({ onClick }: { onClick: () => void }) {
   return (
-    <div className="flex items-center gap-2.5">
-      <img src="/icon.svg" alt="" width={34} height={34} className="rounded-[10px]" />
-      <span className="font-display text-2xl font-black uppercase leading-none tracking-wide">sortegol</span>
-    </div>
+    <button
+      onClick={onClick}
+      aria-label="Ir al inicio"
+      className="group flex items-center gap-2.5 rounded-lg transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cielo"
+    >
+      <img
+        src="/icon.svg"
+        alt=""
+        width={34}
+        height={34}
+        className="rounded-[10px] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+      />
+      <span className="font-display text-2xl font-black uppercase leading-none tracking-wide">SorteGol</span>
+    </button>
   )
 }
 
 export default function App() {
   const [tab, setTab] = useStored<Tab>('tab', 'partido')
 
+  const goHome = () => {
+    setTab('partido')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <>
       <div className="stage-bg" aria-hidden />
       <header className="sticky top-0 z-30 border-b border-white/10 bg-tinta/70 backdrop-blur-lg">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-          <Logo />
+          <Logo onClick={goHome} />
           <Segmented
             className="w-full sm:w-auto sm:min-w-[340px]"
             value={tab}
@@ -44,7 +59,7 @@ export default function App() {
       </main>
 
       <footer className="border-t border-white/10 py-6 text-center text-sm text-white/45">
-        Pagina no oficial hecho como proyecto escolar. Las valoraciones son aproximadas y no pertenecen a EA SPORTS si no que son estimaciones propias.
+        Proyecto escolar no oficial. Las valoraciones son aproximadas y no pertenecen a EA SPORTS.
       </footer>
     </>
   )
