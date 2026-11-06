@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'fondo.jpg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Sorteá FC26',
-        short_name: 'Sorteá FC',
+        name: 'SorteGol',
+        short_name: 'SorteGol',
         description: 'Sorteos de equipos, partidos y torneos parejos para jugar al FC 26 con amigos.',
         lang: 'es-AR',
         start_url: '/',
